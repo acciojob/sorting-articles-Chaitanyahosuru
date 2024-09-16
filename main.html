@@ -1,18 +1,79 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorted Bands</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #band {
+            list-style-type: none;
+            padding: 0;
+        }
+        #band li {
+            background-color: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-	<h1>Sorted Band Articles</h1>
- <ul id="band"></ul>
-    <script type="text/javascript" src="./script.js">
-</script>
+    <h1>Sorted Bands</h1>
+    <ul id="band"></ul>
 
+    <script>
+        // Data for the bands
+        const bands = [
+            'The Plot in You', 
+            'The Devil Wears Prada', 
+            'Pierce the Veil', 
+            'Norma Jean', 
+            'The Bled',
+			'Oh, Sleeper',
+			'A Skylit Drive',
+			'Anywhere But Here',
+			'An Old Dog'
+			
+        ];
+
+        // Function to sort the bands while ignoring specific words
+        function sortBands(bands) {
+            const ignoreWords = ['a', 'an', 'the'];
+
+            // Function to create a normalized version of the band name for sorting
+            function normalizeName(name) {
+                return name
+                    .toLowerCase()
+                    .split(' ')
+                    .filter(word => !ignoreWords.includes(word))
+                    .join(' ');
+            }
+
+            return bands.slice().sort((a, b) => {
+                return normalizeName(a).localeCompare(normalizeName(b));
+            });
+        }
+
+        // Function to display the sorted bands
+        function displayBands(bands) {
+            const listElement = document.getElementById('band');
+            listElement.innerHTML = ''; // Clear existing list
+
+            bands.forEach(band => {
+                const listItem = document.createElement('li');
+                listItem.textContent = band;
+                listElement.appendChild(listItem);
+            });
+        }
+
+        // Sort and display bands
+        const sortedBands = sortBands(bands);
+        displayBands(sortedBands);
+    </script>
 </body>
-
 </html>
