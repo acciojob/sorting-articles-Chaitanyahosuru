@@ -1,2 +1,12 @@
-
+ body {
+            font-family: Arial, sans-serif;
+        }
+        #band {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #band li {
+            margin-bottom: 10px;
+        }
  
